@@ -65,21 +65,21 @@ void GameScene::addHero()
     hero->setPosition(220, GROUND_HEIGHT + hero->getContentSize().height/2);
     hero->bindingWorld(this);
     addChild(hero);
-    auto touchListener = EventListenerTouchOneByOne::create();
-    touchListener->setSwallowTouches(true);
-    touchListener->onTouchBegan = [=](Touch* touch, Event* e)
-    {
-        if(pet->getActive())
-        {
-            hero->jump();
-        }
-        else
-        {
-            wife->clean();
-            pet->setActive(true);
-        }
-        return false;
-    };
+//    auto touchListener = EventListenerTouchOneByOne::create();
+//    touchListener->setSwallowTouches(true);
+//    touchListener->onTouchBegan = [=](Touch* touch, Event* e)
+//    {
+//        if(pet->getActive())
+//        {
+//            hero->jump();
+//        }
+//        else
+//        {
+//            wife->clean();
+//            pet->setActive(true);
+//        }
+//        return false;
+//    };
 //    getEventDispatcher()->addEventListenerWithSceneGraphPriority
 //    (touchListener, this);
 }
@@ -98,6 +98,7 @@ void GameScene::addPet()
     pet->cocos2d::Node::setPosition(160, GROUND_HEIGHT + pet->getContentSize().height/2);
     pet->bindingWorld(this);
     addChild(pet, 101);
+    pet->setActive(true);
 }
 
 void GameScene::addMonster()
