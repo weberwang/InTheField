@@ -9,6 +9,7 @@
 #include "GameScene.h"
 #include "MKNormalPeople.h"
 #include "Wife.h"
+#include "MKActionController.h"
 #include <SimpleAudioEngine.h>
 
 using namespace CocosDenshion;
@@ -37,6 +38,9 @@ void GameScene::onEnter()
     addPet();
     addMonster();
     scheduleUpdate();
+    //添加手势控制
+    auto eaglView = Director::getInstance()->getOpenGLView()->getEAGLView();
+    MKActionController::registControl(eaglView, hero);
 }
 
 void GameScene::initBackground()
@@ -76,8 +80,8 @@ void GameScene::addHero()
         }
         return false;
     };
-    getEventDispatcher()->addEventListenerWithSceneGraphPriority
-    (touchListener, this);
+//    getEventDispatcher()->addEventListenerWithSceneGraphPriority
+//    (touchListener, this);
 }
 
 void GameScene::addWife()

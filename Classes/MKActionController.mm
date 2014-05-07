@@ -20,6 +20,7 @@
     switch(swipe.direction)
     {
         case UISwipeGestureRecognizerDirectionUp:
+            MKActionController::player->jump();
             direction = @"向上↑";
             break;
         case UISwipeGestureRecognizerDirectionLeft:
@@ -47,13 +48,20 @@
     swipe.direction = UISwipeGestureRecognizerDirectionUp;
     [view addGestureRecognizer:swipe];
     [swipe release];
+    
+    swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipHandler:)];
+    swipe.direction = UISwipeGestureRecognizerDirectionDown;
+    [view addGestureRecognizer:swipe];
+    [swipe release];
 }
 
 @end
 
-void MKActionController::registControl(void* view)
+Hero* MKActionController::player = NULL;
+void MKActionController::registControl(void* view, Hero* node)
 {
     auto swipe = [[MKSwipe alloc] init];
     [swipe registeGes:(UIView*) view];
+    MKActionController::player = node;
 }
 
